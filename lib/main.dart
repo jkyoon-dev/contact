@@ -21,19 +21,30 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue,
         ),
         body: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [Icon(Icons.star), Icon(Icons.star)],
+          width: 500,
+          height: 500,
+          color: Colors.blue,
+          margin: EdgeInsets.all(10),
+          child: SizedBox(
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [Text("하이"), Icon(Icons.star), Icon(Icons.star)],
+              ),
+            ),
           ),
         ),
-        bottomNavigationBar: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(Icons.phone),
-            Icon(Icons.message),
-            Icon(Icons.contact_page),
-          ],
+        bottomNavigationBar: SizedBox(
+          height: 100,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Icon(Icons.phone),
+              Icon(Icons.message),
+              Icon(Icons.contact_page),
+            ],
+          ),
         ),
       ),
     );
