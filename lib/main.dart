@@ -10,41 +10,44 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Text('hi'),
-      // home: Icon(Icons.abc),
-      // home: Image.asset('assets/star.jpg'),
-      // Container 기본은 투명박스
-      // 상중하
       home: Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.star),
           title: Text("앱임"),
-          backgroundColor: Colors.blue,
+          actions: [],
         ),
-        body: Container(
-          width: 500,
-          height: 500,
-          color: Colors.blue,
-          margin: EdgeInsets.all(10),
-          child: SizedBox(
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [Text("하이"), Icon(Icons.star), Icon(Icons.star)],
+        body: Column(
+          children: [
+            SizedBox(
+              child: Text(
+                '안녕하세요',
+                style: TextStyle(
+                    color: Color(0xff333333),
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.w900),
               ),
             ),
-          ),
-        ),
-        bottomNavigationBar: SizedBox(
-          height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(Icons.phone),
-              Icon(Icons.message),
-              Icon(Icons.contact_page),
-            ],
-          ),
+            SizedBox(
+              child: TextButton(
+                child: Text('글쨔'),
+                onPressed: () {},
+                style: ButtonStyle(),
+              ),
+            ),
+            SizedBox(
+              child: ElevatedButton(
+                child: Text('글쨔'),
+                onPressed: () {},
+                style: ButtonStyle(),
+              ),
+            ),
+            SizedBox(
+              child: IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () {},
+              ),
+            ),
+          ],
         ),
       ),
     );
