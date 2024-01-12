@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,42 +13,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          leading: Icon(Icons.star),
-          title: Text("앱임"),
-          actions: [],
-        ),
-        body: Column(
+        body: Row(
           children: [
-            SizedBox(
-              child: Text(
-                '안녕하세요',
-                style: TextStyle(
-                    color: Color(0xff333333),
-                    letterSpacing: 2,
-                    fontWeight: FontWeight.w900),
+            Expanded(
+              child: Container(
+                color: Colors.amber,
               ),
             ),
-            SizedBox(
-              child: TextButton(
-                child: Text('글쨔'),
-                onPressed: () {},
-                style: ButtonStyle(),
-              ),
-            ),
-            SizedBox(
-              child: ElevatedButton(
-                child: Text('글쨔'),
-                onPressed: () {},
-                style: ButtonStyle(),
-              ),
-            ),
-            SizedBox(
-              child: IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {},
-              ),
-            ),
+            Flexible(
+                child: Container(
+                  color: Colors.blue,
+                ),
+                flex: 7),
           ],
         ),
       ),
