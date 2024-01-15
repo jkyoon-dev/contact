@@ -27,28 +27,20 @@ class ShopItem extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    return ListView(
-      children: [
-        Row(
-          children: [
-            Icon(Icons.contact_page),
-            Text('홍길동'),
-          ],
-        ),
-        Row(
-          children: [
-            Icon(Icons.contact_page),
-            Text('홍길동'),
-          ],
-        ),
-        Row(
-          children: [
-            Icon(Icons.contact_page),
-            Text('홍길동'),
-          ],
-        ),
-      ],
-    );
+    return ListView(children: [
+      ListTile(
+        leading: Image.asset('assets/star.jpg'),
+        title: Text('홍길동'),
+      ),
+      ListTile(
+        leading: Image.asset('assets/star.jpg'),
+        title: Text('홍길동'),
+      ),
+      ListTile(
+        leading: Image.asset('assets/star.jpg'),
+        title: Text('홍길동'),
+      ),
+    ]);
   }
 }
 
