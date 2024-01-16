@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -12,17 +12,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var a = 1;
-
+  var total = 3;
+  var name = [];
+  var like = [0, 0, 0];
+// context 부모 위젯의 정보를 담고있는 변수 (족보) -> MaterialApp, MyApp
+// builder 족보 생성기
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('앱제목'),
-        ),
-        body: ShopItem(),
+  build(context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('부모영역$context');
+          showDialog(
+            context: context,
+            builder: (context) {
+              // state 보내기 => 작명 : 보낼state
+              return DialogUI();
+            },
+          );
+        },
       ),
+      appBar: AppBar(
+        title: Text('앱제목'),
+      ),
+      body: ShopItem(),
     );
   }
 }
@@ -55,6 +68,39 @@ class _ShopItemState extends State<ShopItem> {
           ),
         );
       },
+    );
+  }
+}
+
+// 커스텀위젯
+class DialogUI extends StatelessWidget {
+  // const DialogUI({super.key});
+  // 부모가 보낸 state는 read-only
+  // 1. state 보내고 2. state 등록 3. 사용
+  const DialogUI({super.key, this.state});
+  final state;
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: SizedBox(
+        width: 300,
+        height: 300,
+        child: Column(
+          children: [
+            TextField(),
+            TextButton(
+              onPressed: () {},
+              child: Text(state.toString()),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('취소'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
