@@ -15,6 +15,13 @@ class _MyAppState extends State<MyApp> {
   var total = 3;
   var name = [];
   var like = [0, 0, 0];
+// 수정함수
+  addName() {
+    setState(() {
+      name.add('말숙');
+    });
+  }
+
   // 부모 State를 자식이 수정하려면? => 부모에 수정함수 만들기
   addOne() {
     setState(() {
@@ -32,7 +39,7 @@ class _MyAppState extends State<MyApp> {
             context: context,
             builder: (context) {
               // state 보내기 => 작명 : 보낼state
-              return DialogUI(addOne: addOne);
+              return DialogUI(addOne: addOne, addName: addName);
             },
           );
         },
@@ -59,7 +66,7 @@ class _ShopItemState extends State<ShopItem> {
   @override
   build(BuildContext context) {
     return ListView.builder(
-      itemCount: 3,
+      itemCount: name.length,
       itemBuilder: (context, index) {
         return ListTile(
           leading: Text("${name[index]} ${like[index]}"),
@@ -80,9 +87,10 @@ class _ShopItemState extends State<ShopItem> {
 // 커스텀위젯
 class DialogUI extends StatelessWidget {
   // 1. state 보내고 2. state 등록 3. 사용
-  DialogUI({super.key, this.state, this.addOne});
+  DialogUI({super.key, this.state, this.addOne, this.addName});
   final state;
   final addOne;
+  final addName;
   var inputData = TextEditingController();
   var inputData2 = '';
   @override
@@ -103,6 +111,7 @@ class DialogUI extends StatelessWidget {
             TextButton(
               onPressed: () {
                 addOne();
+                addName();
               },
               child: Text(state.toString()),
             ),
