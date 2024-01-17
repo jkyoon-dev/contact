@@ -15,8 +15,13 @@ class _MyAppState extends State<MyApp> {
   var total = 3;
   var name = [];
   var like = [0, 0, 0];
-// context 부모 위젯의 정보를 담고있는 변수 (족보) -> MaterialApp, MyApp
-// builder 족보 생성기
+  // 부모 State를 자식이 수정하려면? => 부모에 수정함수 만들기
+  addOne() {
+    setState(() {
+      total++;
+    });
+  }
+
   @override
   build(context) {
     return Scaffold(
@@ -27,13 +32,13 @@ class _MyAppState extends State<MyApp> {
             context: context,
             builder: (context) {
               // state 보내기 => 작명 : 보낼state
-              return DialogUI();
+              return DialogUI(addOne: addOne);
             },
           );
         },
       ),
       appBar: AppBar(
-        title: Text('앱제목'),
+        title: Text(total.toString()),
       ),
       body: ShopItem(),
     );
@@ -74,11 +79,12 @@ class _ShopItemState extends State<ShopItem> {
 
 // 커스텀위젯
 class DialogUI extends StatelessWidget {
-  // const DialogUI({super.key});
-  // 부모가 보낸 state는 read-only
   // 1. state 보내고 2. state 등록 3. 사용
-  const DialogUI({super.key, this.state});
+  DialogUI({super.key, this.state, this.addOne});
   final state;
+  final addOne;
+  var inputData = TextEditingController();
+  var inputData2 = '';
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -87,9 +93,17 @@ class DialogUI extends StatelessWidget {
         height: 300,
         child: Column(
           children: [
-            TextField(),
+            // TextField(controller: inputData),
+            // value는 사용자가 입력한 값
+            TextField(
+              onChanged: (value) {
+                inputData2 = value;
+              },
+            ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                addOne();
+              },
               child: Text(state.toString()),
             ),
             TextButton(
